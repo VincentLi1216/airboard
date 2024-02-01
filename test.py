@@ -16,6 +16,7 @@ def dist(coord1, coord2):
 state = 0
 def show_xy(event,x,y,flags,userdata):
     global state
+    global points_color
     # print(event,x,y,flags)
     '''
     state:
@@ -54,6 +55,7 @@ def show_xy(event,x,y,flags,userdata):
         for i in range(len(points_list)):
             if dist((x,y), points_list[i]) < 20:
                 print("hi"*10, i)
+                points_color = [(0,0,255),(0,0,255),(0,0,255),(0,0,255)]
                 points_color[i] = (255, 0, 0)
                 img = copy.deepcopy(orig_img)
                 print(points_color)
