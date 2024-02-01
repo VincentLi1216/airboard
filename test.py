@@ -1,10 +1,7 @@
 import cv2
 import copy
-import math
 
-
-img = cv2.imread('./example.png')
-orig_img = copy.deepcopy(img)
+(img, orig_img) = None, None
 
 # 要畫的點座標
 points_list = []
@@ -15,8 +12,8 @@ def dist(coord1, coord2):
     return ((coord1[0]-coord2[0])**2+(coord1[1]-coord2[1])**2)**0.5
 
 state = 0
-def show_xy(event,x,y,flags,userdata):
-    global state
+def interaction(event,x,y,flags,userdata):
+    global state, change_point
     global points_color
     # print(event,x,y,flags)
     '''
@@ -62,9 +59,10 @@ def show_xy(event,x,y,flags,userdata):
                 print(points_color)
                 change_point = i
                 cv2.imshow('Select ROI', render(img, False))
-
+    
+    # drag on the dot
     if state == 2 and change_point != None:
-        points_list[i] = (x,y)
+        points_list[change_point] = (x,y)
         img = copy.deepcopy(orig_img)
         cv2.imshow('Select ROI', render(img, False))
 
@@ -113,12 +111,20 @@ def render(img, defualt_points=True):
 
     return img
 
-if __name__ == "__main__":
 
+def select_cornor_dots(path="./example.png"):
+    global img, orig_img
+    img = cv2.imread('./example.png')
+    orig_img = copy.deepcopy(img)
     img = render(img)
-
     cv2.imshow('Select ROI', img)
-    cv2.setMouseCallback('Select ROI', show_xy)  # 設定偵測事件的函式與視窗
+    cv2.setMouseCallback('Select ROI', interaction)  # 設定偵測事件的函式與視窗
 
     cv2.waitKey(0)     # 按下任意鍵停止
     cv2.destroyAllWindows()
+    return points_list
+
+
+if __name__ == "__main__":
+    print(select_cornor_dots())
+
