@@ -9,6 +9,7 @@ orig_img = copy.deepcopy(img)
 # 要畫的點座標
 points_list = []
 points_color = [(0,0,255),(0,0,255),(0,0,255),(0,0,255)]
+change_point = None
 
 def dist(coord1, coord2):
     return ((coord1[0]-coord2[0])**2+(coord1[1]-coord2[1])**2)**0.5
@@ -50,7 +51,7 @@ def show_xy(event,x,y,flags,userdata):
 
 
 
-
+    # click on the dot
     if state == 1:
         for i in range(len(points_list)):
             if dist((x,y), points_list[i]) < 20:
@@ -59,7 +60,15 @@ def show_xy(event,x,y,flags,userdata):
                 points_color[i] = (255, 0, 0)
                 img = copy.deepcopy(orig_img)
                 print(points_color)
+                change_point = i
                 cv2.imshow('Select ROI', render(img, False))
+
+    if state == 2 and change_point != None:
+        points_list[i] = (x,y)
+        img = copy.deepcopy(orig_img)
+        cv2.imshow('Select ROI', render(img, False))
+
+
                 
     
 
