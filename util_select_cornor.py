@@ -58,13 +58,13 @@ def interaction(event,x,y,flags,userdata):
                 img = copy.deepcopy(orig_img)
                 print(points_color)
                 change_point = i
-                cv2.imshow('Select ROI', render(img, False))
+                cv2.imshow('Select ROI (Press q to quit)', render(img, False))
     
     # drag on the dot
     if state == 2 and change_point != None:
         points_list[change_point] = (x,y)
         img = copy.deepcopy(orig_img)
-        cv2.imshow('Select ROI', render(img, False))
+        cv2.imshow('Select ROI (Press q to quit)', render(img, False))
 
 
                 
@@ -98,10 +98,10 @@ def render(img, defualt_points=True):
     for i in range(len(points_list)):
         # last line
         if i == len(points_list)-1:
-            img = cv2.line(img, points_list[0], points_list[i], (255,255,255), 2)
+            img = cv2.line(img, points_list[0], points_list[i], (255,255,255), 1)
         # other lines
         else:
-            img = cv2.line(img, points_list[i], points_list[i+1], (255,255,255), 2)
+            img = cv2.line(img, points_list[i], points_list[i+1], (255,255,255), 1)
             pass
         
     # draw dots
@@ -112,13 +112,14 @@ def render(img, defualt_points=True):
     return img
 
 
-def select_cornor_dots(path="./example.png"):
+def select_cornor(path="./example.png"):
     global img, orig_img
+
     img = cv2.imread('./example.png')
     orig_img = copy.deepcopy(img)
     img = render(img)
-    cv2.imshow('Select ROI', img)
-    cv2.setMouseCallback('Select ROI', interaction)  # 設定偵測事件的函式與視窗
+    cv2.imshow('Select ROI (Press q to quit)', img)
+    cv2.setMouseCallback('Select ROI (Press q to quit)', interaction)  # 設定偵測事件的函式與視窗
 
     cv2.waitKey(0)     # 按下任意鍵停止
     cv2.destroyAllWindows()
@@ -126,5 +127,5 @@ def select_cornor_dots(path="./example.png"):
 
 
 if __name__ == "__main__":
-    print(select_cornor_dots())
+    print(select_cornor())
 
