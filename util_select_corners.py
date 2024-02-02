@@ -112,7 +112,7 @@ def render(img, defualt_points=True):
     return img
 
 
-def select_cornor(input_img):
+def select_corner(input_img):
     global img, orig_img
 
     img = input_img
@@ -128,5 +128,5 @@ def select_cornor(input_img):
 
 if __name__ == "__main__":
     img = cv2.imread("./ex_moon.jpg")
-    print(select_cornor(img))
+    print(select_corner(img))
 
