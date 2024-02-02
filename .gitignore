@@ -11,9 +11,11 @@ id_rsa.pub
 
 venv/
 
+example*
 example.*
 *.mp4
 *.png
+*.jpg
 
 # Icon must end with two \r
 Icon
