@@ -77,8 +77,10 @@ def interaction(event,x,y,flags,userdata):
     # 印出相關參數的數值，userdata 可透過 setMouseCallback 第三個參數垂遞給函式
 
 
-def render(img, defualt_points=True):
+def render(input_img, defualt_points=True):
     global points_list
+
+    img = copy.deepcopy(input_img)
     
     point_size = 5
     point_color = (0, 0, 255) # red

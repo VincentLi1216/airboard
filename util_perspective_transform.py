@@ -6,10 +6,8 @@ def distance_between_points(p1, p2):
     """Calculate the distance between two points"""
     return np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
-def perspective_transform(image_path, points):
+def perspective_transform(img, points):
     """Apply perspective transform to the given image"""
-    # Load the image
-    img = cv2.imread(image_path)
 
     # Ensure that exactly four points are provided
     if len(points) != 4:
@@ -44,7 +42,7 @@ if __name__ == "__main__":
     img = cv2.imread(file_path)
     corners = util_select_corners.select_corner(img)
     print(corners)
-    transformed_image = perspective_transform(file_path, corners)
+    transformed_image = perspective_transform(img, corners)
     cv2.imshow('Transformed Image', transformed_image)
     # cv2.imwrite("cropped_example_30.png", transformed_image)
     cv2.waitKey(0)
