@@ -2,6 +2,8 @@ import os
 import cv2
 import mediapipe as mp
 
+import util_find_files_in_dir
+
 # 初始化 MediaPipe Pose 模組
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
@@ -22,21 +24,13 @@ def detect_pose_and_draw(image_path):
     return img
 
 if __name__ == "__main__":
-    dir_path = "./example_dir"
+    dir_path = "./example_dir/cropped"
 
-    for folder, subfolders, filenames in os.walk(dir_path):
-        print(f'目前資料夾路徑為：{folder}')
-        
-        for filename in filenames:
-            if not filename.endswith(".png"):
-                continue
-            # print(f'{folder}內含檔案為：{filename}')
-            file_path =os.path.join(folder, filename) 
-            print(file_path)
+    filenames = util_find_files_in_dir.find_files_in_dir(dir_path, [".jpg", ".png"])
+    for filename in filenames:
+        img_with_pose = detect_pose_and_draw(filename)
+        cv2.imshow('Pose Detection', img_with_pose)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
-            # 使用範例
-            img_with_pose = detect_pose_and_draw(file_path)
-            cv2.imshow('Pose Detection', img_with_pose)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
 

@@ -16,23 +16,18 @@ def perspective_transform(img, points):
     pts_src = np.array(points, dtype=np.float32)
 
     # Calculate the width and height of the target image
-    width_a = distance_between_points(pts_src[0], pts_src[1])
-    width_b = distance_between_points(pts_src[2], pts_src[3])
-    height_a = distance_between_points(pts_src[0], pts_src[3])
-    height_b = distance_between_points(pts_src[1], pts_src[2])
-
-    # Take the maximum values to ensure coverage of the entire area
-    max_width = int(max(width_a, width_b))
-    max_height = int(max(height_a, height_b))
+    width = distance_between_points(pts_src[0], pts_src[1])
+    height = distance_between_points(pts_src[0], pts_src[3])
 
     # Specify the coordinates of the four corners of the transformed image
-    pts_dst = np.array([[0, 0], [max_width-1, 0], [max_width-1, max_height-1], [0, max_height-1]], dtype=np.float32)
+    # Order: Right Top, Left Top, Left Bottom, Right Bottom
+    pts_dst = np.array([[width-1, 0], [0, 0], [0, height-1], [width-1, height-1]], dtype=np.float32)
 
     # Calculate the perspective transform matrix
     M = cv2.getPerspectiveTransform(pts_src, pts_dst)
 
     # Apply the perspective transformation
-    transformed_img = cv2.warpPerspective(img, M, (max_width, max_height))
+    transformed_img = cv2.warpPerspective(img, M, (int(width), int(height)))
 
     return transformed_img
 
@@ -44,8 +39,8 @@ if __name__ == "__main__":
     print(corners)
     transformed_image = perspective_transform(img, corners)
     cv2.imshow('Transformed Image', transformed_image)
-    # cv2.imwrite("cropped_example_30.png", transformed_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 
