@@ -22,12 +22,14 @@ def detect_pose_and_draw(image_path):
     return img
 
 if __name__ == "__main__":
-    dir_path = "./example"
+    dir_path = "./example_dir"
 
     for folder, subfolders, filenames in os.walk(dir_path):
         print(f'目前資料夾路徑為：{folder}')
         
         for filename in filenames:
+            if not filename.endswith(".png"):
+                continue
             # print(f'{folder}內含檔案為：{filename}')
             file_path =os.path.join(folder, filename) 
             print(file_path)
