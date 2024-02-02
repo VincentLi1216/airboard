@@ -41,9 +41,9 @@ def capture_frames(video_path, interval, max_duration=None):
 
 if __name__ == "__main__":
     # Example usage
-    video_file_path = "./example.mp4"  # Set your video path
-    interval = 5  # Set the screenshot interval in seconds
-    capture_frames(video_file_path, interval, 20)
+    video_file_path = "./example_frame_30.png"  # Set your video path
+    interval = 20  # Set the screenshot interval in seconds
+    capture_frames(video_file_path, interval, 600)
 
 
 

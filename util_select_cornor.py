@@ -112,10 +112,10 @@ def render(img, defualt_points=True):
     return img
 
 
-def select_cornor(path="./example.png"):
+def select_cornor(input_img):
     global img, orig_img
 
-    img = cv2.imread('./example.png')
+    img = input_img
     orig_img = copy.deepcopy(img)
     img = render(img)
     cv2.imshow('Select ROI (Press q to quit)', img)
@@ -127,5 +127,6 @@ def select_cornor(path="./example.png"):
 
 
 if __name__ == "__main__":
-    print(select_cornor())
+    img = cv2.imread("./ex_moon.jpg")
+    print(select_cornor(img))
 
