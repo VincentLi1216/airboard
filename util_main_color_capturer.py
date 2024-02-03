@@ -19,9 +19,9 @@ def find_dominant_colors(image_path, k=3):
 
     return colors
 
-def define_hsv_range(rgb_color, delta=10):
+def define_hsv_range(bgr_color, delta=10):
     # 将 RGB 颜色转换为 HSV
-    hsv_color = cv2.cvtColor(np.uint8([[rgb_color]]), cv2.COLOR_RGB2HSV)[0][0]
+    hsv_color = cv2.cvtColor(np.uint8([[bgr_color]]), cv2.COLOR_BGR2HSV)[0][0]
     
     # 定义 HSV 范围
     lower_bound = np.array([hsv_color[0] - delta, max(hsv_color[1] - delta, 0), max(hsv_color[2] - delta, 0)])
@@ -30,17 +30,18 @@ def define_hsv_range(rgb_color, delta=10):
     return lower_bound, upper_bound
 
 # 使用示例
-dominant_colors = find_dominant_colors('./red.jpg', k=1)
+dominant_colors = find_dominant_colors('./bur_example.png', k=1)
 
 for color in dominant_colors:
     # 将浮点数颜色转换为整数
     color = np.uint8(color)
     color = np.flip(color)
 
-    lower_bound, upper_bound = define_hsv_range(color, delta=10)
+    lower_bound, upper_bound = define_hsv_range(color, delta=50)
     print(f"Color: {color}, Lower HSV: {lower_bound}, Upper HSV: {upper_bound}")
+    # lower_color = cv2.cvtColor(lower_bound, cv2.COLOR_HSV2RGB)
     # lower_color = cv2.cvtColor(lower_bound, cv2.COLOR_HSV2BGR)
-    # print(lower_color)
+    # print(lower_color[0][0])
 
     # 创建一个高度为 300、宽度为 900 的白色图像
     height = 300
