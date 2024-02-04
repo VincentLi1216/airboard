@@ -9,7 +9,7 @@ def find_files_in_dir(path, file_format_list):
     # 获取指定路径下的所有文件和目录名
     file_names = os.listdir(path)
     file_names.sort(key=natural_sort_key)  # 修改這裡
-    print(file_names)
+    # print(file_names)
     for item in file_names:
         full_path = os.path.join(path, item)
         # 检查是否为文件且符合指定的格式

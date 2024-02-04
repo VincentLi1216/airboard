@@ -11,7 +11,7 @@ def show_color(event, x, y, flags, param):
         print(color_info)
 
 # 讀取圖像
-image = cv2.imread('./bur_example_30.png')  # 替換成你的圖像路徑
+image = cv2.imread('./example_dir/cropped/117.png')  # 替換成你的圖像路徑
 if image is None:
     print("Error: Unable to load image. Check file path.")
     exit()

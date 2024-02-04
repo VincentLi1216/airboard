@@ -21,8 +21,8 @@ def compare_images(img1, img2):
 
 
 if __name__ == "__main__":
-    img1 = cv2.imread("./bur_example.png")
-    img2 = cv2.imread("./bur_example0.png")
+    img1 = cv2.imread("./example_dir/cropped/100.png")
+    img2 = cv2.imread("./example_dir/cropped/12.png")
     diff_img = compare_images(img1, img2)
 
     # 標準化圖像

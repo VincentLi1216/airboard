@@ -29,6 +29,20 @@ def color_map(img):
 
     return overlayed_image
 
+
+def apply_colored_mask_on_image(img, mask):
+    # 將灰度遮罩轉換為彩色映射
+    colored_mask = cv2.applyColorMap(mask, cv2.COLORMAP_JET)
+
+    # 如果圖像是灰度的，先將其轉換為彩色
+    if len(img.shape) == 2 or img.shape[2] == 1:
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+
+    # 混合原始圖像和彩色遮罩
+    blended_image = cv2.addWeighted(img, 0.7, colored_mask, 0.3, 0)
+
+    return blended_image
+
 if __name__ == "__main__":
     img = cv2.imread("./ex_moon.jpg")
 

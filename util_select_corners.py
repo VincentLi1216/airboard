@@ -44,10 +44,6 @@ def interaction(event,x,y,flags,userdata):
     if state==3 and event==0:
         state=0
 
-
-
-
-
     # click on the dot
     if state == 1:
         for i in range(len(points_list)):
@@ -65,13 +61,6 @@ def interaction(event,x,y,flags,userdata):
         points_list[change_point] = (x,y)
         img = copy.deepcopy(orig_img)
         cv2.imshow('Select ROI (Press q to quit)', render(img, False))
-
-
-                
-    
-
-    
-
 
     print(state_mapping[state], event)
     # 印出相關參數的數值，userdata 可透過 setMouseCallback 第三個參數垂遞給函式
