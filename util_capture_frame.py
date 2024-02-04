@@ -28,8 +28,9 @@ def capture_frames(video_path, interval, max_duration=None):
         frame_time = i * interval
         frame = clip.get_frame(frame_time)
         frame_image = Image.fromarray(frame)
-        frame_path = os.path.join(output_folder, f"{video_name}_frame_{i}.png")
+        frame_path = os.path.join(output_folder, f"{i}.png")
         frame_image.save(frame_path)
+        print(f"{i}.png completed")
         
         if max_duration is not None:
             if i*interval >= max_duration:
@@ -41,9 +42,9 @@ def capture_frames(video_path, interval, max_duration=None):
 
 if __name__ == "__main__":
     # Example usage
-    video_file_path = "./example_frame_30.png"  # Set your video path
+    video_file_path = "./example_dir/mp4/example.mp4"  # Set your video path
     interval = 20  # Set the screenshot interval in seconds
-    capture_frames(video_file_path, interval, 600)
+    capture_frames(video_file_path, interval)
 
 
 

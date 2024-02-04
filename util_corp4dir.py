@@ -25,6 +25,6 @@ def corp4dir(input_dir_path, output_dir_path=None, to_show=False):
         
 
 if __name__ == "__main__":
-    corp4dir("./example", "./example_dir/cropped", False)
+    corp4dir("./example_dir/example", "./example_dir/cropped", False)
 
 
