@@ -3,6 +3,8 @@ import numpy as np
 
 import util_compare_img
 import util_color_map
+from util_find_files_in_dir import find_files_in_dir
+from util_color_mask import color_mask
 
 def min_max_normalize_to_255(arr):
     normalized = (arr - arr.min()) / (arr.max() - arr.min())  # 正規化到 0-1
@@ -10,29 +12,36 @@ def min_max_normalize_to_255(arr):
     return scaled.astype(np.uint8)  # 轉換為無符號整數類型
 
 
-file_path = "./example_dir/cropped/100.png"
-img=cv2.imread(file_path)
+dir_path = "./example_dir/cropped"
+file_paths = find_files_in_dir(dir_path, [".png"])
+for file_path in file_paths:
+    img=cv2.imread(file_path)
 
-blur_img = cv2.medianBlur(img,41)
+    blur_img = cv2.medianBlur(img,41)
 
-result = util_compare_img.compare_images(img, blur_img)
+    result = util_compare_img.compare_images(img, blur_img)
 
-cv2.imshow("result", result)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    # cv2.imshow("result", result)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
-vertical_sum = result.sum(axis=0)
-vertical_sum = min_max_normalize_to_255(vertical_sum)
+    vertical_sum = result.sum(axis=0)
+    vertical_sum = min_max_normalize_to_255(vertical_sum)
 
-mask = np.tile(vertical_sum, (img.shape[0],1))
+    mask = np.tile(vertical_sum, (img.shape[0],1))
 
-mask = cv2.GaussianBlur(mask, (51, 5), 0)
-img_with_mask = util_color_map.apply_colored_mask_on_image(img, mask)
+    mask = cv2.GaussianBlur(mask, (51, 5), 0)
+    
+    block_mask = color_mask(img, vertical_mask=True)
+    mask = cv2.bitwise_and(mask, block_mask)
+    
+    
 
-cv2.imshow("result", img_with_mask)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    img_with_mask = util_color_map.apply_colored_mask_on_image(img, mask)
 
-
+    cv2.imshow("img", result)
+    cv2.imshow("result", img_with_mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
