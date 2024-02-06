@@ -1,4 +1,5 @@
 import cv2, os
+from tqdm import tqdm
 
 import util_find_files_in_dir
 import util_select_corners
@@ -10,7 +11,7 @@ def corp4dir(input_dir_path, output_dir_path=None, to_show=False):
 
 
     corners = util_select_corners.select_corner(cv2.imread(file_paths[0]))
-    for file_path in file_paths:
+    for file_path in tqdm(file_paths):
         file_name = os.path.basename(file_path)
         img = cv2.imread(file_path)
         img = util_perspective_transform.perspective_transform(img, corners)

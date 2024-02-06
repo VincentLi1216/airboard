@@ -2,6 +2,7 @@ import os
 from moviepy.editor import VideoFileClip
 from PIL import Image
 import numpy as np
+from tqdm import tqdm
 
 def capture_frames(video_path, interval, max_duration=None):
     # Check if the video file exists
@@ -24,13 +25,13 @@ def capture_frames(video_path, interval, max_duration=None):
     total_frames = int(clip.duration // interval)
 
     # Capture and save images
-    for i in range(total_frames):
+    for i in tqdm(range(total_frames)):
         frame_time = i * interval
         frame = clip.get_frame(frame_time)
         frame_image = Image.fromarray(frame)
         frame_path = os.path.join(output_folder, f"{i}.png")
         frame_image.save(frame_path)
-        print(f"{i}.png completed")
+        # print(f"{i}.png completed")
         
         if max_duration is not None:
             if i*interval >= max_duration:

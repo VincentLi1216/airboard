@@ -1,5 +1,6 @@
 import cv2, copy
 import numpy as np
+from tqdm import tqdm
 
 import util_find_files_in_dir
 
@@ -44,12 +45,10 @@ if __name__ == "__main__":
     dir_path = "./example_dir/cropped"
 
     file_paths = util_find_files_in_dir.find_files_in_dir(dir_path, [".jpg", ".png"])
-    for file_path in file_paths:
-        print(file_path)
+    for file_path in tqdm(file_paths):
+        # print(file_path)
         img = cv2.imread(file_path)
-        lower_bound = np.array([47, 14, 82])
-        upper_bound = np.array([120, 130, 190])
-        res = color_mask(img, lower_bound, upper_bound, blur_radius=41, show_result=True, vertical_mask=False)
+        res = color_mask(img,vertical_mask=True)
         cv2.imshow('Input', img)
         cv2.imshow('Result', res)
         cv2.waitKey(0)
