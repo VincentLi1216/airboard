@@ -5,7 +5,7 @@ mp_drawing = mp.solutions.drawing_utils                    # mediapipe 繪圖功
 mp_selfie_segmentation = mp.solutions.selfie_segmentation  # mediapipe 自拍分割方法
 
 cap = cv2.VideoCapture(1)
-bg = cv2.imread('./bur_example.png')   # 載入 windows 經典背景
+bg = cv2.imread('./example_dir/often_used/fruit.jpg')   # 載入 windows 經典背景
 bg = cv2.resize(bg, (520, 300))
 
 

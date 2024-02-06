@@ -1,13 +1,28 @@
-import re
+from tqdm import tqdm
+import cv2, os
 
-def natural_sort_key(s):
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+from util_find_files_in_dir import find_files_in_dir
+from util_compare_img import compare_images
 
-# 假設 file_list 是包含檔案名稱的列表
-file_list = ["20.png", "1.png", "100.png", "0.png"]
+dir_path = "./example_dir/written_mask"
+file_paths = find_files_in_dir(dir_path, ["png"])
 
-# 使用自然排序
-file_list.sort(key=natural_sort_key)
+# img1 = cv2.imread("./example_dir/written_mask/40.png")
+# img2 = cv2.imread("./example_dir/written_mask/100.png")
 
-print(file_list)
+# img = cv2.subtract(img2, img1)
+# cv2.imshow("img",img)
+# cv2.waitKey()
 
+
+for i in tqdm(range(0,len(file_paths)-1)):
+    img1 = cv2.imread(file_paths[0])
+    img2 = cv2.imread(file_paths[i+1])
+    # img = compare_images(cv2.imread(file_paths[i]), cv2.imread(file_paths[i+1]))
+
+    img = cv2.subtract(img1,img2)
+    # img = cv2.medianBlur(img, 5)
+    saved_file_name = f"./example_dir/substarct_img1-2/{os.path.basename(file_paths[i])}"
+    cv2.imwrite(saved_file_name, img)
+    # cv2.imshow("good", img)
+    # cv2.waitKey(0)
