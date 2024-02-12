@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 
 import util_compare_img
 import util_color_map
@@ -65,14 +66,53 @@ def substract_img(dir_path, start_index=0):
         cv2.waitKey()
         cv2.destroyAllWindows()
         
+def substract_img_from_the_back(dir_path):
+    pixel_list = np.array([])
 
 
+    file_paths = find_files_in_dir(dir_path, [".png"])
 
+    x=np.arange(len(file_paths)-1)
 
+    base_img = cv2.imread(file_paths[-1])
+    base_mask = color_mask(base_img)
+    base_img = create_written_mask(base_img)
+    base_img = cv2.bitwise_and(base_img, base_mask)
+    for i,file_path in enumerate(tqdm(file_paths)):
+        if i == len(file_paths)-1:break
+        img = cv2.imread(file_path)
+        img_mask = color_mask(img)
+        img = create_written_mask(img)
+        img = cv2.bitwise_and(img, img_mask)
+        result = cv2.subtract(img, base_img)
 
+        mask_count = np.sum(img_mask)
+        result_count = np.sum(result)
+        pixel_list = np.append(pixel_list, result_count/mask_count)
+
+        # cv2.imwrite(f"./example_dir/subtrack_back_with_mask/{i}.png", result)
+
+        # cv2.imshow(f"{i}.png", result)
+        # cv2.waitKey()
+        # cv2.destroyAllWindows()
+    window_size = 11
+    smooth = np.convolve(pixel_list, np.ones(window_size)/window_size, mode='full')
+    smooth = smooth[-len(pixel_list):]
+    print(smooth.shape)
+    diff = np.diff(smooth) * 3
+    diff[diff>0] = 0 
+    diff = np.convolve(diff, np.ones(window_size)/window_size, mode='valid')
+    diff2 = np.diff(diff)*5
+    plt.plot(smooth, "b-")
+    plt.plot(diff , "g-")
+    plt.plot(x, pixel_list, "r-")
+    plt.plot(diff2, "y-")
+    plt.plot(np.zeros(len(x)), "r-")
+    plt.show()
 
 
 # test_add("./example_dir/written_mask_with_vmask") 
 # main("./example_dir/cropped")
-substract_img("./example_dir/written_mask_with_vmask", start_index=40)
+# substract_img("./example_dir/written_mask_with_vmask", start_index=40)
 
+substract_img_from_the_back("./example_dir/cropped")

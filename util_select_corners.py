@@ -48,11 +48,11 @@ def interaction(event,x,y,flags,userdata):
     if state == 1:
         for i in range(len(points_list)):
             if dist((x,y), points_list[i]) < 20:
-                print("hi"*10, i)
+                # print("hi"*10, i)
                 points_color = [(0,0,255),(0,0,255),(0,0,255),(0,0,255)]
                 points_color[i] = (255, 0, 0)
                 img = copy.deepcopy(orig_img)
-                print(points_color)
+                # print(points_color)
                 change_point = i
                 cv2.imshow('Select ROI (Press q to quit)', render(img, False))
     
@@ -62,7 +62,7 @@ def interaction(event,x,y,flags,userdata):
         img = copy.deepcopy(orig_img)
         cv2.imshow('Select ROI (Press q to quit)', render(img, False))
 
-    print(state_mapping[state], event)
+    # print(state_mapping[state], event)
     # 印出相關參數的數值，userdata 可透過 setMouseCallback 第三個參數垂遞給函式
 
 
