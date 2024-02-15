@@ -9,6 +9,7 @@ import util_color_map
 from util_find_files_in_dir import find_files_in_dir
 from util_color_mask import color_mask
 from util_written_mask import create_written_mask
+from util_conv_array import conv_array
 
 def min_max_normalize_to_255(arr):
     normalized = (arr - arr.min()) / (arr.max() - arr.min())  # 正規化到 0-1
@@ -95,13 +96,13 @@ def substract_img_from_the_back(dir_path):
         # cv2.imshow(f"{i}.png", result)
         # cv2.waitKey()
         # cv2.destroyAllWindows()
-    window_size = 11
-    smooth = np.convolve(pixel_list, np.ones(window_size)/window_size, mode='full')
+    window_size = 10
+    smooth = conv_array(pixel_list, window_size)
     smooth = smooth[-len(pixel_list):]
     print(smooth.shape)
     diff = np.diff(smooth) * 3
     diff[diff>0] = 0 
-    diff = np.convolve(diff, np.ones(window_size)/window_size, mode='valid')
+    diff = conv_array(diff, window_size)
     diff2 = np.diff(diff)*5
     plt.plot(smooth, "b-")
     plt.plot(diff , "g-")
