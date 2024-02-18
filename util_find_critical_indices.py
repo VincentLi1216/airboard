@@ -63,8 +63,8 @@ def find_critical_indices(dir_path, save_path = None, to_show=False, show_plot=F
 
         if i == 0 and in_range:
             in_range = False
-            range_list.append([start_index, index])
-    print(range_list)
+            range_list.append([int(start_index), int(index)])
+    # print(range_list)
     
     # 存儲每個範圍最小值索引的列表
     min_indices = []
@@ -73,9 +73,9 @@ def find_critical_indices(dir_path, save_path = None, to_show=False, show_plot=F
         start, end = r
         # 尋找每個範圍內的最小值的索引
         min_index = np.argmin(diff[start:end]) + start
-        min_indices.append(min_index)
+        min_indices.append(int(min_index))
 
-    print(min_indices)
+    # print(min_indices)
 
     if show_plot:
         print(min_indices, pixel_list[min_indices])
@@ -87,6 +87,8 @@ def find_critical_indices(dir_path, save_path = None, to_show=False, show_plot=F
         plt.plot(np.zeros(len(pixel_list)), "m-")
         plt.legend()
         plt.show()
+
+    return list(min_indices), list(range_list)
 
 if __name__ == "__main__":
     

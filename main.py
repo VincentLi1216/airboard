@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 from tqdm import tqdm
+import json
 
 from util_capture_frame import capture_frames
 from util_crop4dir import crop4dir
@@ -19,10 +20,16 @@ def main(video_path, skip_steps=[]):
         dir_path = os.path.join("./cache", v_basename)
         capture_path = os.path.join(dir_path, "captured")
         cropped_path = os.path.join(dir_path, "cropped")
+        result_path = os.path.join(dir_path, "final_result")
         print(f'Working dir: "{dir_path}"')
-        for dir in [dir_path, capture_path, cropped_path]:
-            os.makedirs(dir, exist_ok=True)
+        dirs = [dir_path, capture_path, cropped_path, result_path]
+        for dir in dirs:
             print(f'mkdir: "{dir}"')
+        for dir in tqdm(dirs):
+            os.makedirs(dir, exist_ok=True)
+        ci_json_path = os.path.join(dir_path, "critical_indices.json")
+        if not os.path.exists(ci_json_path):
+            os.system(f"touch {ci_json_path}")
     else:
         print("Skipped")
     
@@ -44,11 +51,18 @@ def main(video_path, skip_steps=[]):
     # find_critical_indices
     print_step("Find Critical Indices")
     if "find_critical_indices" not in skip_steps:
-        find_critical_indices(cropped_path)
+        critical_indices, critical_ranges = find_critical_indices(cropped_path)
+        data = {"critical_indices":critical_indices, "critical_ranges":critical_ranges}
+        with open(ci_json_path, "w") as f:
+            json.dump(data, f)
     else:
+        with open(ci_json_path, "r") as f:
+            data = json.load(f)
+        critical_indices = data["critical_indices"]
+        # print(critical_indices)
         print("Skipped")
     
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img", "find_critical_indices"])
