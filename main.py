@@ -57,7 +57,7 @@ def test_add(dir_path):
         cv2.waitKey()
         cv2.destroyAllWindows()
 
-def substract_img(dir_path, start_index=0):
+def subtract_img(dir_path, start_index=0):
     file_paths = find_files_in_dir(dir_path, [".png"])
     base_img = cv2.imread(file_paths[start_index])
     for i in tqdm(range(start_index+1,len(file_paths))):
@@ -67,18 +67,17 @@ def substract_img(dir_path, start_index=0):
         cv2.waitKey()
         cv2.destroyAllWindows()
         
-def substract_img_from_the_back(dir_path):
+def subtract_img_from_the_back(dir_path, save_path = None, to_show=False, show_plot=False):
     pixel_list = np.array([])
-
-
     file_paths = find_files_in_dir(dir_path, [".png"])
-
-    x=np.arange(len(file_paths)-1)
-
+    
+    # base_img is the last img
     base_img = cv2.imread(file_paths[-1])
     base_mask = color_mask(base_img)
     base_img = create_written_mask(base_img)
     base_img = cv2.bitwise_and(base_img, base_mask)
+
+    # subtract img from the back
     for i,file_path in enumerate(tqdm(file_paths)):
         if i == len(file_paths)-1:break
         img = cv2.imread(file_path)
@@ -91,26 +90,24 @@ def substract_img_from_the_back(dir_path):
         result_count = np.sum(result)
         pixel_list = np.append(pixel_list, result_count/mask_count)
 
-        # cv2.imwrite(f"./example_dir/subtrack_back_with_mask/{i}.png", result)
+        if save_path != None:
+            cv2.imwrite(f"./example_dir/subtrack_back_with_mask/{i}.png", result)
 
-        # cv2.imshow(f"{i}.png", result)
-        # cv2.waitKey()
-        # cv2.destroyAllWindows()
+        if to_show:
+            cv2.imshow(f"{i}.png", result)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
+    
+    # data processing
     window_size = 10
     smooth = conv_array(pixel_list, window_size)
-    # smooth = smooth[-len(pixel_list):]
-    # print(smooth.shape)
     diff = diff_array(smooth)
     diff = conv_array(diff, window_size)
     diff[diff>0] = 0 
     diff = filter_np_array(diff)
     
-    # diff = conv_array(diff, 14)
-    diff2 = diff_array(diff)
-    # diff2 = conv_array(diff2, window_size)
-    diff2 = filter_np_array(diff2)
-    diff3 = diff_array(diff2)
-
+    
+    # find out negative ranges
     range_list = []
     in_range = False
     start_index = None
@@ -135,23 +132,15 @@ def substract_img_from_the_back(dir_path):
 
     print(min_indices)
 
+    if show_plot:
+        plt.plot(pixel_list, "r-o", label="original")
+        plt.plot(smooth, "b", label="conv_array")
 
-        
-
-    # print(diff2)
-    plt.plot(x, pixel_list, "r-o", label="original")
-    plt.plot(smooth, "b-o", label="conv_array")
-
-    plt.plot(diff*3 , "g-", label="diff1")
-    # plt.plot(diff2, "y-", label="diff2")
-    # plt.plot(diff3, "c-", label="diff3")
-    plt.plot(np.zeros(len(x)), "m-")
-    plt.legend()
-    plt.show()
+        plt.plot(diff*3 , "g-", label="diff1")
+        plt.plot(np.zeros(len(pixel_list)), "m-")
+        plt.legend()
+        plt.show()
 
 
-# test_add("./example_dir/written_mask_with_vmask") 
-# main("./example_dir/cropped")
-# substract_img("./example_dir/written_mask_with_vmask", start_index=40)
 
-substract_img_from_the_back("./example_dir/cropped")
+subtract_img_from_the_back("./example_dir/cropped")
