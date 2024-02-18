@@ -29,7 +29,7 @@ def main(video_path, skip_steps=[]):
         for dir in dirs:
             print(f'mkdir: "{dir}"')
 
-        json_path = os.path.join(dir_path, "info.json")
+        json_path = os.path.join(os.getcwd(), dir_path, "info.json")
         if not os.path.exists(json_path):
             print(f'touch: "{json_path}"')
             os.system(f"touch {json_path}")
@@ -60,7 +60,7 @@ def main(video_path, skip_steps=[]):
     if "find_critical_indices" not in skip_steps:
         critical_indices, critical_ranges = find_critical_indices(cropped_path)
         # add the last img to the list
-        critical_indices.append(len(os.listdir(cropped_path))-2)
+        critical_indices.append(len(os.listdir(cropped_path))-1)
         data = {"critical_indices":critical_indices, "critical_ranges":critical_ranges}
         with open(json_path, "w") as f:
             json.dump(data, f)
@@ -89,4 +89,4 @@ def main(video_path, skip_steps=[]):
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+    main("./mp4_videos/example_EM.mp4", skip_steps=[])
