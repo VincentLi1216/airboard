@@ -9,7 +9,7 @@ import util_color_map
 from util_find_files_in_dir import find_files_in_dir
 from util_color_mask import color_mask
 from util_written_mask import create_written_mask
-from util_conv_array import conv_array
+from util_conv_array import conv_array, diff_array, filter_np_array
 
 def min_max_normalize_to_255(arr):
     normalized = (arr - arr.min()) / (arr.max() - arr.min())  # 正規化到 0-1
@@ -98,17 +98,55 @@ def substract_img_from_the_back(dir_path):
         # cv2.destroyAllWindows()
     window_size = 10
     smooth = conv_array(pixel_list, window_size)
-    smooth = smooth[-len(pixel_list):]
-    print(smooth.shape)
-    diff = np.diff(smooth) * 3
-    diff[diff>0] = 0 
+    # smooth = smooth[-len(pixel_list):]
+    # print(smooth.shape)
+    diff = diff_array(smooth)
     diff = conv_array(diff, window_size)
-    diff2 = np.diff(diff)*5
-    plt.plot(smooth, "b-")
-    plt.plot(diff , "g-")
-    plt.plot(x, pixel_list, "r-")
-    plt.plot(diff2, "y-")
-    plt.plot(np.zeros(len(x)), "r-")
+    diff[diff>0] = 0 
+    diff = filter_np_array(diff)
+    
+    # diff = conv_array(diff, 14)
+    diff2 = diff_array(diff)
+    # diff2 = conv_array(diff2, window_size)
+    diff2 = filter_np_array(diff2)
+    diff3 = diff_array(diff2)
+
+    range_list = []
+    in_range = False
+    start_index = None
+    for index, i in enumerate(diff):
+        if i < 0 and not in_range:
+            in_range = True
+            start_index = index
+
+        if i == 0 and in_range:
+            in_range = False
+            range_list.append([start_index, index])
+    print(range_list)
+    
+    # 存儲每個範圍最小值索引的列表
+    min_indices = []
+
+    for r in range_list:
+        start, end = r
+        # 尋找每個範圍內的最小值的索引
+        min_index = np.argmin(diff[start:end]) + start
+        min_indices.append(min_index)
+
+    print(min_indices)
+
+
+        
+
+    # print(diff2)
+    plt.plot(x, pixel_list, "r-o", label="original")
+    plt.plot(smooth, "b-o", label="conv_array")
+
+    plt.plot(diff*3 , "g-", label="diff1")
+    # plt.plot(diff2, "y-", label="diff2")
+    # plt.plot(diff3, "c-", label="diff3")
+    plt.plot(np.zeros(len(x)), "m-")
+    plt.legend()
     plt.show()
 
 
