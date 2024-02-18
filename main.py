@@ -7,6 +7,7 @@ import json
 from util_capture_frame import capture_frames
 from util_crop4dir import crop4dir
 from util_find_critical_indices import find_critical_indices
+from util_combine_img import combine
 
 def print_step(step_name):
     print("\n","-"*5, step_name, "-"*5)
@@ -15,6 +16,8 @@ def main(video_path, skip_steps=[]):
     # init_workspace
     print_step("Initializing Workspace")
     if "init_workspace" not in skip_steps:
+        # mkdir cache
+        os.makedirs("./cache", exist_ok=True)
         v_basename = os.path.basename(video_path)
         v_basename, _ = os.path.splitext(v_basename)
         dir_path = os.path.join("./cache", v_basename)
@@ -25,11 +28,15 @@ def main(video_path, skip_steps=[]):
         dirs = [dir_path, capture_path, cropped_path, result_path]
         for dir in dirs:
             print(f'mkdir: "{dir}"')
-        for dir in tqdm(dirs):
-            os.makedirs(dir, exist_ok=True)
+
         json_path = os.path.join(dir_path, "info.json")
         if not os.path.exists(json_path):
+            print(f'touch: "{json_path}"')
             os.system(f"touch {json_path}")
+
+        for dir in tqdm(dirs):
+            os.makedirs(dir, exist_ok=True)
+
     else:
         print("Skipped")
     
@@ -52,6 +59,8 @@ def main(video_path, skip_steps=[]):
     print_step("Find Critical Indices")
     if "find_critical_indices" not in skip_steps:
         critical_indices, critical_ranges = find_critical_indices(cropped_path)
+        # add the last img to the list
+        critical_indices.append(len(os.listdir(cropped_path))-2)
         data = {"critical_indices":critical_indices, "critical_ranges":critical_ranges}
         with open(json_path, "w") as f:
             json.dump(data, f)
@@ -60,8 +69,24 @@ def main(video_path, skip_steps=[]):
             data = json.load(f)
         critical_indices = data["critical_indices"]
         print("Skipped")
-    
+
+    # combine_img
+    print_step("Combining Images")
+    print(critical_indices)
+    if "combine_img" not in skip_steps:
+        for index, i in enumerate(tqdm(critical_indices)):
+            if index == len(critical_indices)-1: 
+                img_index = i
+                print("hi")
+            else:
+                offset = -2
+                img_index = i+offset
+            save_path = os.path.join(result_path, f"{img_index}.png")
+            res = combine(cropped_path, i)
+            cv2.imwrite(save_path, res)
+    else:
+        print("Skipped")
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img", "find_critical_indices"])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
