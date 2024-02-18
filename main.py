@@ -27,9 +27,9 @@ def main(video_path, skip_steps=[]):
             print(f'mkdir: "{dir}"')
         for dir in tqdm(dirs):
             os.makedirs(dir, exist_ok=True)
-        ci_json_path = os.path.join(dir_path, "critical_indices.json")
-        if not os.path.exists(ci_json_path):
-            os.system(f"touch {ci_json_path}")
+        json_path = os.path.join(dir_path, "info.json")
+        if not os.path.exists(json_path):
+            os.system(f"touch {json_path}")
     else:
         print("Skipped")
     
@@ -53,13 +53,12 @@ def main(video_path, skip_steps=[]):
     if "find_critical_indices" not in skip_steps:
         critical_indices, critical_ranges = find_critical_indices(cropped_path)
         data = {"critical_indices":critical_indices, "critical_ranges":critical_ranges}
-        with open(ci_json_path, "w") as f:
+        with open(json_path, "w") as f:
             json.dump(data, f)
     else:
-        with open(ci_json_path, "r") as f:
+        with open(json_path, "r") as f:
             data = json.load(f)
         critical_indices = data["critical_indices"]
-        # print(critical_indices)
         print("Skipped")
     
     
