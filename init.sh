@@ -1,2 +1,3 @@
 pip install -r ./requirments.txt
-touch ./mp4_videos
+mkdir ./mp4_videos
+mkdir ./cache
