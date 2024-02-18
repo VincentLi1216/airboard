@@ -5,7 +5,7 @@ import util_find_files_in_dir
 import util_select_corners
 import util_perspective_transform
 
-def corp4dir(input_dir_path, output_dir_path=None, to_show=False):
+def crop4dir(input_dir_path, output_dir_path=None, to_show=False):
     ok_formats = [".png", ".jpg"] 
     file_paths = util_find_files_in_dir.find_files_in_dir(input_dir_path, ok_formats) 
 
@@ -26,6 +26,6 @@ def corp4dir(input_dir_path, output_dir_path=None, to_show=False):
         
 
 if __name__ == "__main__":
-    corp4dir("./example_dir/example", "./example_dir/cropped", False)
+    crop4dir("./example_dir/example", "./example_dir/cropped", False)
 
 

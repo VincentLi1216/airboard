@@ -23,8 +23,8 @@ def find_critical_indices(dir_path, save_path = None, to_show=False, show_plot=F
     base_img = cv2.bitwise_and(base_img, base_mask)
 
     # subtract img from the back
-    for i,file_path in enumerate(tqdm(file_paths)):
-        if i == len(file_paths)-1:break
+    for i in tqdm(range(len(file_paths)-1)):
+        file_path = file_paths[i]
         img = cv2.imread(file_path)
         img_mask = color_mask(img)
         img = create_written_mask(img)
