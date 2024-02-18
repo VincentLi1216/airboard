@@ -29,10 +29,10 @@ def main(video_path, skip_steps=[]):
         for dir in dirs:
             print(f'mkdir: "{dir}"')
 
-        json_path = os.path.join(os.getcwd(), dir_path, "info.json")
-        if not os.path.exists(json_path):
-            print(f'touch: "{json_path}"')
-            os.system(f"touch {json_path}")
+        json_path = os.path.join(os.getcwd(), "cache", v_basename, "info.json")
+        # if not os.path.exists(json_path):
+        #     print(f'touch: "{json_path}"')
+        #     os.system(f"touch {json_path}")
 
         for dir in tqdm(dirs):
             os.makedirs(dir, exist_ok=True)
@@ -72,21 +72,21 @@ def main(video_path, skip_steps=[]):
 
     # combine_img
     print_step("Combining Images")
+    img_index = None
     print(critical_indices)
     if "combine_img" not in skip_steps:
         for index, i in enumerate(tqdm(critical_indices)):
             if index == len(critical_indices)-1: 
                 img_index = i
-                print("hi")
             else:
                 offset = -2
                 img_index = i+offset
             save_path = os.path.join(result_path, f"{img_index}.png")
-            res = combine(cropped_path, i)
+            res = combine(cropped_path, img_index)
             cv2.imwrite(save_path, res)
     else:
         print("Skipped")
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=[])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
