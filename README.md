@@ -23,7 +23,6 @@ Project Airboard is ideally suited for students, educators, and professionals wh
 By providing a seamless integration of technology with the learning process, Project Airboard aims to revolutionize the way we capture and interact with educational content.
 
 ---
-
 # Installation Guide
 
 ## 1. Clone the project
@@ -32,7 +31,7 @@ git clone git@github.com:VincentLi1216/airboard.git
 ```
 
 ## 2. Install Python 3.11.6 or above
-[Go to Python Official Website](https://www.python.org/downloads/)
+[Go to the Python Official Website](https://www.python.org/downloads/)
 ## 3. pip install virtualenv
 ```sh
 pip install virtualenv
@@ -64,21 +63,24 @@ sh run.sh
 ```
 
 ---
-
-# Features and Demo
+# Demo
 
 ---
+# Features
+- Corner Selector
+- Auto Obstacle Mask
+- Find Critical Indices
+- Combine Image
 
+---
 # Code Examples
 
 ---
-
 # License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
 # Contact Information
 ## My email
 For any inquiries or further information, feel free to reach out: 
