@@ -8,6 +8,11 @@
 - [Overview](#overview)
 - [Installation Guide](#Installation-Guide)
 - [Usage Instructions](#Usage-Instructions)
+- [Demo](#Demo)
+- [Features](#Features)
+- [Code Example](#Code-Examples)
+- [License](#License)
+- [Contact Information](#Contace-Information)
 
 ## Key Features
 - **Smart Capture**: Leveraging advanced algorithms, Airboard proficiently identifies optimal moments for note capture during MP4 lecture recordings. This feature ensures that the most significant content is accurately recorded, enhancing the quality and comprehensiveness of notes.
@@ -64,6 +69,15 @@ sh run.sh
 
 ---
 # Demo
+## 1. Put Your File in ./cache/mp4_videos
+![[md_attachment/input.png]]
+## 2. Put Corresponding Path into the Function
+![[md_attachment/path.png]]
+
+## 3. Execute the code "sh run.sh"
+![[md_attachment/run.png]]
+## 4. See the result
+![[md_attachment/result.png]]
 
 ---
 # Features
@@ -71,9 +85,16 @@ sh run.sh
 - Auto Obstacle Mask
 - Find Critical Indices
 - Combine Image
+- Skippable Process
 
 ---
 # Code Examples
+```python
+from main import main
+
+main("<Path to Your Video>", skip_steps=[])
+# note: you can fill in ["init_workplace", "capture_frames", "crop_img", "find_critical_indices", "combine_img"] in skip_steps
+```
 
 ---
 # License
@@ -85,9 +106,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## My email
 For any inquiries or further information, feel free to reach out: 
 - Email: [sunnus.tw@gmail.com](mailto:sunnus.tw@gmail.com)
-
----
-# FAQs and Troubleshooting
-
-  
 
