@@ -81,6 +81,7 @@ def main(video_path, skip_steps=[]):
             else:
                 offset = -2
                 img_index = i+offset
+            # print(img_index)
             save_path = os.path.join(result_path, f"{img_index}.png")
             res = combine(cropped_path, img_index)
             cv2.imwrite(save_path, res)
@@ -89,4 +90,4 @@ def main(video_path, skip_steps=[]):
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=[])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "capture_frames", "crop_img"])
