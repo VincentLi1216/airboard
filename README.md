@@ -20,24 +20,24 @@ Project Airboard is ideally suited for students, educators, and professionals wh
 By providing a seamless integration of technology with the learning process, Project Airboard aims to revolutionize the way we capture and interact with educational content.
 # Installation Guide
 
-## Clone the project
+## 1. Clone the project
 ```sh
 git clone git@github.com:VincentLi1216/airboard.git
 ```
 
-## Install Python 3.11.6 or above
+## 2. Install Python 3.11.6 or above
 [Go to Python Official Website](https://www.python.org/downloads/)
-## pip install virtualenv
+## 3. pip install virtualenv
 ```sh
 pip install virtualenv
 ```
 
-## Init the project
+## 4. Init the project
 ```sh
 sh init.sh
 ```
 
-## Put your video input in mp4_videos
+## 5. Put your video input in mp4_videos
 ```
 ├── mp4_videos
 │   └── <PUT YOUR FILE HERE>
@@ -50,7 +50,7 @@ sh init.sh
 ├── ...
 ```
 
-## Run the project
+## 6. Run the project
 ```sh
 sh run.sh
 ```
