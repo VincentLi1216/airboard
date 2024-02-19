@@ -12,7 +12,7 @@
 - [Features](#Features)
 - [Code Example](#Code-Examples)
 - [License](#License)
-- [Contact Information](#Contace-Information)
+- [Contact Information](#Contact-Information)
 
 ## Key Features
 - **Smart Capture**: Leveraging advanced algorithms, Airboard proficiently identifies optimal moments for note capture during MP4 lecture recordings. This feature ensures that the most significant content is accurately recorded, enhancing the quality and comprehensiveness of notes.
@@ -75,7 +75,7 @@ sh run.sh
 ## 2. Put Corresponding Path into the Function
 ![image](md_attachment/path.png)
 
-## 3. Execute the code "sh run.sh"
+## 3. Execute the Code by "sh run.sh"
 ![image](md_attachment/run.png)
 
 ## 4. See the result
@@ -83,11 +83,16 @@ sh run.sh
 
 ---
 # Features
-- Corner Selector
-- Auto Obstacle Mask
-- Find Critical Indices
-- Combine Image
-- Skippable Process
+## Corner Selector
+![image](./md_attachment/select_corner.gif)
+
+## Auto Obstacle Mask
+
+## Find Critical Indices
+
+## Combine Image
+
+## Skippable Process
 
 ---
 # Code Examples
