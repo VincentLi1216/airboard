@@ -1,11 +1,14 @@
+# Table of Content
+[[#Project Airboard Intelligent Note Capture System|Overview]]
+[[#Installation Guide]]
+[[#Usage Instructions]]
+
 # Project Airboard: Intelligent Note Capture System
 
 ## Overview
-
 **Project Airboard** represents a cutting-edge solution in the realm of educational technology, specifically designed to enhance the learning experience through an intelligent note capture system. This project is tailored for avid learners seeking an efficient, user-friendly, and dependable method for note-taking.
 
 ## Key Features
-
 - **Smart Capture**: Leveraging advanced algorithms, Airboard proficiently identifies optimal moments for note capture during MP4 lecture recordings. This feature ensures that the most significant content is accurately recorded, enhancing the quality and comprehensiveness of notes.
     
 - **Obstacle Detection and Resolution**: Unique to Airboard is its ability to recognize and address obstacles obstructing the note-taking area. The system ingeniously utilizes multiple image sources to reconstruct and present an unobstructed, comprehensive view of the notes.
@@ -14,10 +17,12 @@
     
 
 ## Target Audience
-
 Project Airboard is ideally suited for students, educators, and professionals who engage with digital learning materials and seek to optimize their note-taking process.
 
 By providing a seamless integration of technology with the learning process, Project Airboard aims to revolutionize the way we capture and interact with educational content.
+
+---
+
 # Installation Guide
 
 ## 1. Clone the project
