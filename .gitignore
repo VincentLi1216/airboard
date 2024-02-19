@@ -17,6 +17,9 @@ example.*
 *.png
 *.jpg
 
+# keep pngs in md_attachment
+!md_attachment/
+
 # Icon must end with two \r
 Icon
 
