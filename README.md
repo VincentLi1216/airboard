@@ -1,3 +1,4 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # Project Airboard: Intelligent Note Capture System
 
 ## Overview
@@ -61,18 +62,29 @@ sh init.sh
 ```sh
 sh run.sh
 ```
+
+---
+
 # Features and Demo
+
+---
+
 # Code Examples
+
+---
 
 # License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 # Contact Information
 ## My email
 For any inquiries or further information, feel free to reach out: 
 - Email: [sunnus.tw@gmail.com](mailto:sunnus.tw@gmail.com)
 
+---
 # FAQs and Troubleshooting
 
   
