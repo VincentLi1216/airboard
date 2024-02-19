@@ -5,7 +5,7 @@
 
 ## Table of Content
 [Overview](#overview)
-[Installation Guide](#Installation Guide)
+[Installation Guide](#InstallationGuide)
 
 ## Key Features
 - **Smart Capture**: Leveraging advanced algorithms, Airboard proficiently identifies optimal moments for note capture during MP4 lecture recordings. This feature ensures that the most significant content is accurately recorded, enhancing the quality and comprehensiveness of notes.
