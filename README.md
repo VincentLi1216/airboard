@@ -65,6 +65,9 @@ sh run.sh
 # Code Examples
 
 # License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 # Contact Information
 ## My email
 For any inquiries or further information, feel free to reach out: 
