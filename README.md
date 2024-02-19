@@ -85,14 +85,17 @@ sh run.sh
 # Features
 ## Corner Selector
 ![image](./md_attachment/select_corner.gif)
-
 ## Auto Obstacle Mask
 
 ## Find Critical Indices
+![image](./md_attachment/figure.png)
 
 ## Combine Image
+![image](./md_attachment/91.png)
+![image](./md_attachment/combine.gif)
 
 ## Skippable Process
+![image](./md_attachment/skip_process.gif)
 
 ---
 # Code Examples

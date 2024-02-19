@@ -90,4 +90,4 @@ def main(video_path, skip_steps=[]):
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames"])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
