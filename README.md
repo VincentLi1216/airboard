@@ -6,6 +6,7 @@
 ## Table of Content
 - [Overview](#overview)
 - [Installation Guide](#Installation-Guide)
+- [Usage Instructions](#Usage-Instructions)
 
 ## Key Features
 - **Smart Capture**: Leveraging advanced algorithms, Airboard proficiently identifies optimal moments for note capture during MP4 lecture recordings. This feature ensures that the most significant content is accurately recorded, enhancing the quality and comprehensiveness of notes.
@@ -41,7 +42,9 @@ pip install virtualenv
 sh init.sh
 ```
 
-## 5. Put your video input in mp4_videos
+---
+# Usage Instructions
+## 1. Put your video input in mp4_videos
 ```
 ├── mp4_videos
 │   └── <PUT YOUR FILE HERE>
@@ -54,17 +57,19 @@ sh init.sh
 ├── ...
 ```
 
-## 6. Run the project
+## 2. Run the project
 ```sh
 sh run.sh
 ```
-# Usage Instructions
 # Features and Demo
 # Code Examples
-# Contribution Guidelines
+
 # License
 # Contact Information
-# Acknowledgments
+## My email
+For any inquiries or further information, feel free to reach out: 
+- Email: [sunnus.tw@gmail.com](mailto:sunnus.tw@gmail.com)
+
 # FAQs and Troubleshooting
 
   
