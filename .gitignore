@@ -10,6 +10,7 @@ id_rsa.pub
 .LSOverride
 
 venv/
+test_codes/
 
 example*
 example.*
