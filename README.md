@@ -37,19 +37,25 @@ git clone git@github.com:VincentLi1216/airboard.git
 
 ## 2. Install Python 3.11.6 or above
 [Go to the Python Official Website](https://www.python.org/downloads/)
+
 ## 3. pip install virtualenv
 ```sh
 pip install virtualenv
 ```
 
-## 4. Init the project
+## 4. Create Virtualenv
+```
+virtualenv -p <path to your python 3.11.6> venv
+```
+
+## 5. Init the project
 ```sh
 sh init.sh
 ```
 
 ---
-# Usage Instructions
-## 1. Put your video input in mp4_videos
+# Demo
+## 1. Put Your File in ./cache/mp4_videos
 ```
 ├── mp4_videos
 │   └── <PUT YOUR FILE HERE>
@@ -61,19 +67,13 @@ sh init.sh
 │
 ├── ...
 ```
-
-## 2. Run the project
-```sh
-sh run.sh
-```
-
----
-# Demo
-## 1. Put Your File in ./cache/mp4_videos
 ![image](md_attachment/input.png)
 
 ## 2. Put Corresponding Path into the Function
-![image](md_attachment/path.png)
+```python
+if __name__ == "__main__":
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+```
 
 ## 3. Execute the Code by "sh run.sh"
 ![image](md_attachment/run.png)
@@ -86,6 +86,7 @@ sh run.sh
 ## Corner Selector
 ![image](./md_attachment/select_corner.gif)
 ## Auto Obstacle Mask
+![image](./md_attachment/color_mask.gif)
 
 ## Find Critical Indices
 ![image](./md_attachment/figure.png)
@@ -116,4 +117,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## My email
 For any inquiries or further information, feel free to reach out: 
 - Email: [sunnus.tw@gmail.com](mailto:sunnus.tw@gmail.com)
+
 

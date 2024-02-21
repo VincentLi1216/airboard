@@ -6,7 +6,7 @@ import util_find_files_in_dir
 
 
 
-def color_mask(input_img, lower_bound= np.array([47, 14, 82]), upper_bound= np.array([120, 130, 190]), blur_radius=41, show_result=False, erosion_ksize=15, vertical_mask=False):
+def color_mask(input_img, lower_bound= np.array([47, 14, 82]), upper_bound= np.array([120, 130, 190]), blur_radius=41, show_result=False, erosion_ksize=21, vertical_mask=False):
     img = copy.deepcopy(input_img)
     if blur_radius > 1:  # 確保 blur_radius 是奇數且大於1
         img = cv2.medianBlur(img, blur_radius)
@@ -26,6 +26,7 @@ def color_mask(input_img, lower_bound= np.array([47, 14, 82]), upper_bound= np.a
     mask[:int(mask.shape[0]*0.05),:] = 255
     
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (71, 71))
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
     mask = cv2.erode(mask, kernel)
 
     if vertical_mask:
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     for file_path in tqdm(file_paths):
         # print(file_path)
         img = cv2.imread(file_path)
-        res = color_mask(img,vertical_mask=True)
+        res = color_mask(img,vertical_mask=False, show_result=True)
         cv2.imshow('Input', img)
         cv2.imshow('Result', res)
         cv2.waitKey(0)
