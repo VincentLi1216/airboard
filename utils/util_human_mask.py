@@ -5,6 +5,7 @@ import numpy as np
 # 初始化 MediaPipe 自拍分割模塊
 mp_selfie_segmentation = mp.solutions.selfie_segmentation
 
+
 def create_human_mask(img):
     # 讀取圖像並調整尺寸
     # img = cv2.resize(img, (520, 300))
@@ -22,7 +23,6 @@ def create_human_mask(img):
     return mask
 
 
-
 if __name__ == "__main__":
     # 使用範例
     img = cv2.imread("./example_frame_9.png")
@@ -31,4 +31,3 @@ if __name__ == "__main__":
     cv2.imshow('Human Mask', mask)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-

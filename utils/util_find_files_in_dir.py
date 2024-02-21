@@ -1,8 +1,10 @@
 import os
 import re
 
+
 def natural_sort_key(s):
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+
 
 def find_files_in_dir(path, file_format_list):
     return_list = []
@@ -17,7 +19,7 @@ def find_files_in_dir(path, file_format_list):
             return_list.append(full_path)
     return return_list
 
+
 if __name__ == "__main__":
     path = "./example_dir/cropped"
     print(find_files_in_dir(path, [".png", ".jpg"]))
-

@@ -9,8 +9,10 @@ from utils.util_crop4dir import crop4dir
 from utils.util_find_critical_indices import find_critical_indices
 from utils.util_combine_img import combine
 
+
 def print_step(step_name):
-    print("\n","-"*5, step_name, "-"*5)
+    print("\n", "-"*5, step_name, "-"*5)
+
 
 def main(video_path, skip_steps=[]):
     """
@@ -24,6 +26,8 @@ def main(video_path, skip_steps=[]):
         None
     """
     # Rest of the code...
+
+
 def main(video_path, skip_steps=[]):
     # init_workspace
     print_step("Initializing Workspace")
@@ -51,7 +55,7 @@ def main(video_path, skip_steps=[]):
 
     else:
         print("Skipped")
-    
+
     # capture_frames
     print_step("Capturing Frames")
     if "capture_frames" not in skip_steps:
@@ -73,7 +77,8 @@ def main(video_path, skip_steps=[]):
         critical_indices, critical_ranges = find_critical_indices(cropped_path)
         # add the last img to the list
         critical_indices.append(len(os.listdir(cropped_path))-1)
-        data = {"critical_indices":critical_indices, "critical_ranges":critical_ranges}
+        data = {"critical_indices": critical_indices,
+                "critical_ranges": critical_ranges}
         with open(json_path, "w") as f:
             json.dump(data, f)
     else:
@@ -88,7 +93,7 @@ def main(video_path, skip_steps=[]):
     print(critical_indices)
     if "combine_img" not in skip_steps:
         for index, i in enumerate(tqdm(critical_indices)):
-            if index == len(critical_indices)-1: 
+            if index == len(critical_indices)-1:
                 img_index = i
             else:
                 offset = -2
@@ -99,7 +104,7 @@ def main(video_path, skip_steps=[]):
             cv2.imwrite(save_path, res)
     else:
         print("Skipped")
-    
+
 
 if __name__ == "__main__":
     main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", ""])

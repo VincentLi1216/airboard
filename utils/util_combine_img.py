@@ -4,6 +4,7 @@ import os
 
 from utils.util_color_mask import color_mask
 
+
 def combine(path, index, extension=".png", to_show=False):
     i = index
     img_path = os.path.join(path, f"{i}{extension}")
@@ -14,7 +15,7 @@ def combine(path, index, extension=".png", to_show=False):
         cv2.imshow("img", img)
         cv2.waitKey()
         cv2.destroyAllWindows()
-    while np.any(img_mask==0):
+    while np.any(img_mask == 0):
         i -= 1
         new_img_path = os.path.join(path, f"{i}{extension}")
         new_img = cv2.imread(new_img_path)

@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 from tqdm import tqdm
 
+
 def capture_frames(video_path, output_folder, interval, max_duration=None):
     # Check if the video file exists
     if not os.path.exists(video_path):
@@ -46,12 +47,9 @@ def capture_frames(video_path, output_folder, interval, max_duration=None):
 
     print(f"Screenshots completed, saved in the folder {output_folder}.")
 
+
 if __name__ == "__main__":
     # Example usage
     video_file_path = "./example_dir/mp4/example.mp4"  # Set your video path
     interval = 20  # Set the screenshot interval in seconds
     capture_frames(video_file_path, interval=interval)
-
-
-
-

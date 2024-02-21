@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 def color_map(img):
     is_BGR = None
 
@@ -25,7 +26,8 @@ def color_map(img):
 
     # Overlay original image with color map
     alpha = 0.5
-    overlayed_image = cv2.addWeighted(img, 1 - alpha, colored_overlay, alpha, 0)
+    overlayed_image = cv2.addWeighted(
+        img, 1 - alpha, colored_overlay, alpha, 0)
 
     return overlayed_image
 
@@ -43,6 +45,7 @@ def apply_colored_mask_on_image(img, mask):
 
     return blended_image
 
+
 if __name__ == "__main__":
     img = cv2.imread("./ex_moon.jpg")
 
@@ -50,5 +53,3 @@ if __name__ == "__main__":
     cv2.imshow("result", result)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-

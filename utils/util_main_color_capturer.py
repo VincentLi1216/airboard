@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from sklearn.cluster import KMeans
 
+
 def find_dominant_colors(image_path, k=3):
     # 读取图像
     img = cv2.imread(image_path)
@@ -19,15 +20,19 @@ def find_dominant_colors(image_path, k=3):
 
     return colors
 
+
 def define_hsv_range(bgr_color, delta=10):
     # 将 RGB 颜色转换为 HSV
     hsv_color = cv2.cvtColor(np.uint8([[bgr_color]]), cv2.COLOR_BGR2HSV)[0][0]
-    
+
     # 定义 HSV 范围
-    lower_bound = np.array([hsv_color[0] - delta, max(hsv_color[1] - delta, 0), max(hsv_color[2] - delta, 0)])
-    upper_bound = np.array([hsv_color[0] + delta, min(hsv_color[1] + delta, 255), min(hsv_color[2] + delta, 255)])
+    lower_bound = np.array(
+        [hsv_color[0] - delta, max(hsv_color[1] - delta, 0), max(hsv_color[2] - delta, 0)])
+    upper_bound = np.array(
+        [hsv_color[0] + delta, min(hsv_color[1] + delta, 255), min(hsv_color[2] + delta, 255)])
 
     return lower_bound, upper_bound
+
 
 # 使用示例
 dominant_colors = find_dominant_colors('./bur_example.png', k=1)
@@ -54,6 +59,3 @@ for color in dominant_colors:
     cv2.imshow("img", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-
-

@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 def show_color(event, x, y, flags, param):
     if event == cv2.EVENT_MOUSEMOVE:
         bgr = image[y, x]
@@ -9,6 +10,7 @@ def show_color(event, x, y, flags, param):
 
         color_info = f"RGB: {rgb}, BGR: {bgr}, HSV: {hsv}"
         print(color_info)
+
 
 # 讀取圖像
 image = cv2.imread('./example_dir/cropped/117.png')  # 替換成你的圖像路徑
@@ -26,4 +28,3 @@ while True:
         break
 
 cv2.destroyAllWindows()
-
