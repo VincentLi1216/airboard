@@ -7,7 +7,6 @@
 ## Table of Content
 - [Overview](#overview)
 - [Installation Guide](#Installation-Guide)
-- [Usage Instructions](#Usage-Instructions)
 - [Demo](#Demo)
 - [Features](#Features)
 - [Code Example](#Code-Examples)
@@ -59,7 +58,7 @@ sh init.sh
 ```
 ├── mp4_videos
 │   └── <PUT YOUR FILE HERE>
-├── test_codes
+├── utils
 │   └── ...
 ├── venv
 │   └── ...
@@ -84,18 +83,23 @@ if __name__ == "__main__":
 ---
 # Features
 ## Corner Selector
+The Corner Selector offers a user-friendly interface, enabling users to swiftly and accurately define regions of interest. With this tool, precise selection is accomplished in a single step, streamlining the user experience for enhanced productivity.
 ![image](./md_attachment/select_corner.gif)
 ## Auto Obstacle Mask
+Airboard's sophisticated obstacle recognition technology can identify obstructions in the frame and create high-precision masks. This feature facilitates the seamless combination of images, ensuring clarity and continuity in visual outputs.
 ![image](./md_attachment/color_mask.gif)
 
 ## Find Critical Indices
+This feature tackles the challenge of pinpointing critical frames in long videos(1 hour +). By analyzing each frame, the algorithm smartly extracts the most comprehensive and relevant notes, optimizing content assimilation from lengthy recordings.
 ![image](./md_attachment/figure.png)
 
 ## Combine Image
+In instances where obstacles are detected, the system intelligently employs multiple images to construct the most comprehensive and unobstructed view, ensuring the integrity and completeness of visual information.
 ![image](./md_attachment/91.png)
 ![image](./md_attachment/combine.gif)
 
 ## Skippable Process
+Recognizing the need for flexibility in development, the Skippable Process feature allows developers to bypass specific time-consuming tasks, facilitating efficient exploration and fine-tuning of the project.
 ![image](./md_attachment/skip_process.gif)
 
 ---
@@ -117,5 +121,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## My email
 For any inquiries or further information, feel free to reach out: 
 - Email: [sunnus.tw@gmail.com](mailto:sunnus.tw@gmail.com)
-
 
