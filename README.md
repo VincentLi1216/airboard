@@ -33,7 +33,7 @@ By providing a seamless integration of technology with the learning process, Pro
 
 ## 1. Clone the project
 ```sh
-git clone git@github.com:VincentLi1216/airboard.git
+git clone git@github.com:VincentLi1216/airboard.git && cd airboard
 ```
 
 ## 2. Install Python 3.11.6 or above
