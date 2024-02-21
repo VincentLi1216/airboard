@@ -26,7 +26,7 @@ def color_mask(input_img, lower_bound= np.array([47, 14, 82]), upper_bound= np.a
     mask[:int(mask.shape[0]*0.05),:] = 255
     
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (71, 71))
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
+    # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
     mask = cv2.erode(mask, kernel)
 
     if vertical_mask:

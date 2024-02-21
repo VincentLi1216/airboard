@@ -72,7 +72,7 @@ sh init.sh
 ```python
 from main import main
 
-main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+main("./mp4_videos/example_EM.mp4", skip_steps=["", ""])
 ```
 
 ## 3. Execute the Code by "sh run.sh"
