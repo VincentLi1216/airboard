@@ -4,10 +4,10 @@ import os
 from tqdm import tqdm
 import json
 
-from util_capture_frame import capture_frames
-from util_crop4dir import crop4dir
-from util_find_critical_indices import find_critical_indices
-from util_combine_img import combine
+from utils.util_capture_frame import capture_frames
+from utils.util_crop4dir import crop4dir
+from utils.util_find_critical_indices import find_critical_indices
+from utils.util_combine_img import combine
 
 def print_step(step_name):
     print("\n","-"*5, step_name, "-"*5)
@@ -90,4 +90,4 @@ def main(video_path, skip_steps=[]):
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", ""])

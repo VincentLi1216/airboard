@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from util_compare_img import compare_images
+from utils.util_compare_img import compare_images
 
 def create_written_mask(img,blur_radius=41):
     blur_img = cv2.medianBlur(img,blur_radius)

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-import util_color_map
+import utils.util_color_map
 
 def compare_images(img1, img2):
     # Step 2: Resize images if they are different sizes

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import util_select_corners
+import utils.util_select_corners
 
 def distance_between_points(p1, p2):
     """Calculate the distance between two points"""

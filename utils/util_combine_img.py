@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 
-from util_color_mask import color_mask
+from utils.util_color_mask import color_mask
 
 def combine(path, index, extension=".png", to_show=False):
     i = index

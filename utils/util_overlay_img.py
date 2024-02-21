@@ -2,8 +2,8 @@ import cv2, copy
 import numpy as np
 from tqdm import tqdm
 
-from util_color_mask import color_mask
-from util_find_files_in_dir import find_files_in_dir
+from utils.util_color_mask import color_mask
+from utils.util_find_files_in_dir import find_files_in_dir
 
 def overlay_img(dir_path, start_index=0):
     file_paths = find_files_in_dir(dir_path, [".png"])
