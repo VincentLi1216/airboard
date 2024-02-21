@@ -13,6 +13,18 @@ def print_step(step_name):
     print("\n","-"*5, step_name, "-"*5)
 
 def main(video_path, skip_steps=[]):
+    """
+    Main function for processing video frames and generating a final result.
+
+    Args:
+        video_path (str): The path to the video file.
+        skip_steps (list, optional): A list of steps to skip during processing. Defaults to an empty list.
+
+    Returns:
+        None
+    """
+    # Rest of the code...
+def main(video_path, skip_steps=[]):
     # init_workspace
     print_step("Initializing Workspace")
     if "init_workspace" not in skip_steps:
@@ -90,4 +102,4 @@ def main(video_path, skip_steps=[]):
     
 
 if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["", ""])
+    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", ""])
