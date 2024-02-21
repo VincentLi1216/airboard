@@ -70,14 +70,27 @@ sh init.sh
 
 ## 2. Put Corresponding Path into the Function
 ```python
-if __name__ == "__main__":
-    main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
+from main import main
+
+main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", "crop_img"])
 ```
 
 ## 3. Execute the Code by "sh run.sh"
 ![image](md_attachment/run.png)
 
 ## 4. See the result
+```
+├── mp4_videos
+│   └── ...
+├── utils
+│   └── ...
+├── cache
+│   └── <NAME OF YOUR VIDEO>
+│       └──final_result
+├── main.py
+│
+├── ...
+```
 ![image](md_attachment/result.png)
 
 ---
