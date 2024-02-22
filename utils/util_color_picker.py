@@ -21,7 +21,8 @@ if image is None:
 cv2.namedWindow('Image')
 cv2.setMouseCallback('Image', show_color)
 
-# 顯示圖像
+print("Hover over the image to see the color information. Press 'q' to quit.")
+
 while True:
     cv2.imshow('Image', image)
     if cv2.waitKey(1) & 0xFF == ord('q'):

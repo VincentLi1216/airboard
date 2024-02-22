@@ -25,10 +25,6 @@ def main(video_path, skip_steps=[]):
     Returns:
         None
     """
-    # Rest of the code...
-
-
-def main(video_path, skip_steps=[]):
     # init_workspace
     print_step("Initializing Workspace")
     if "init_workspace" not in skip_steps:
