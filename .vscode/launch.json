@@ -11,7 +11,7 @@
       "program": "${file}",
       "console": "integratedTerminal",
       "justMyCode": true,
-      "python": "python3"
+      "python": "${workspaceFolder}/venv/bin/python"
     }
   ]
 }
