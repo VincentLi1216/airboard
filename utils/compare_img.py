@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-import utils.util_color_map
+import utils.color_map
 
 
 def compare_images(img1, img2):

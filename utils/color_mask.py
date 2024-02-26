@@ -1,9 +1,12 @@
-import cv2
 import copy
+import sys
+
+import cv2
 import numpy as np
 from tqdm import tqdm
 
-import utils.util_find_files_in_dir
+sys.path.append(".")
+from utils import find_files_in_dir
 
 
 def color_mask(input_img, lower_bound=np.array([47, 14, 82]), upper_bound=np.array([120, 130, 190]), blur_radius=41, show_result=False, erosion_ksize=21, vertical_mask=False):
@@ -44,7 +47,7 @@ def color_mask(input_img, lower_bound=np.array([47, 14, 82]), upper_bound=np.arr
 if __name__ == "__main__":
     dir_path = "./example_dir/cropped"
 
-    file_paths = util_find_files_in_dir.find_files_in_dir(
+    file_paths = find_files_in_dir.find_files_in_dir(
         dir_path, [".jpg", ".png"])
     for file_path in tqdm(file_paths):
         # print(file_path)

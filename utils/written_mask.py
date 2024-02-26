@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from utils.util_compare_img import compare_images
+from utils.compare_img import compare_images
 
 
 def create_written_mask(img, blur_radius=41):

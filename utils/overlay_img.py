@@ -3,8 +3,8 @@ import copy
 import numpy as np
 from tqdm import tqdm
 
-from utils.util_color_mask import color_mask
-from utils.util_find_files_in_dir import find_files_in_dir
+from utils.color_mask import color_mask
+from utils.find_files_in_dir import find_files_in_dir
 
 
 def overlay_img(dir_path, start_index=0):

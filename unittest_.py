@@ -2,9 +2,9 @@ import unittest
 from unittest import mock
 import numpy as np
 
-from utils import util_capture_frame
-from utils import util_color_map
-from utils import util_find_files_in_dir
+from utils import capture_frame
+from utils import color_map
+from utils import find_files_in_dir
 
 class TestCaptureFrames(unittest.TestCase):
     @mock.patch('os.path.exists')
@@ -28,7 +28,7 @@ class TestCaptureFrames(unittest.TestCase):
         mock_join.return_value = "/fake/path"
 
         # Call the function with the mock objects
-        util_capture_frame.capture_frames(
+        capture_frame.capture_frames(
             "/fake/video/path", "/fake/output/folder", 5)
 
         # Assert that the VideoFileClip was called with the correct video path
@@ -46,7 +46,7 @@ class TestCaptureFrames(unittest.TestCase):
         mock_exists.return_value = False
 
         # Call the function with the mock objects
-        util_capture_frame.capture_frames(
+        capture_frame.capture_frames(
             "/fake/video/path", "/fake/output/folder", 5)
 
         # Assert that the function returned early
@@ -68,7 +68,7 @@ class TestColorMap(unittest.TestCase):
 
         # Call the function with a 3D array
         img = np.array([[[0, 0, 0]]])
-        result = util_color_map.color_map(img)
+        result = color_map.color_map(img)
 
         # Assert that the cv2.cvtColor was called once
         mock_cvtColor.assert_called_once()
@@ -95,7 +95,7 @@ class TestColorMap(unittest.TestCase):
         # Call the function with a 3D array
         img = np.array([[[0, 0, 0]]])
         mask = np.array([[0]])
-        result = util_color_map.apply_colored_mask_on_image(img, mask)
+        result = color_map.apply_colored_mask_on_image(img, mask)
 
         # Assert that the cv2.applyColorMap was called once
         mock_applyColorMap.assert_called_once()
@@ -118,7 +118,7 @@ class TestFindFilesInDir(unittest.TestCase):
         mock_isfile.return_value = True
 
         # Call the function with the mock objects
-        result = util_find_files_in_dir.find_files_in_dir('/fake/path', ['.txt'])
+        result = find_files_in_dir.find_files_in_dir('/fake/path', ['.txt'])
 
         # Assert that the result is as expected
         self.assertEqual(result, ['/fake/path/file1.txt', '/fake/path/file3.txt'])
@@ -131,7 +131,7 @@ class TestFindFilesInDir(unittest.TestCase):
         mock_listdir.return_value = []
 
         # Call the function with the mock objects
-        result = util_find_files_in_dir.find_files_in_dir('/fake/path', ['.txt'])
+        result = find_files_in_dir.find_files_in_dir('/fake/path', ['.txt'])
 
         # Assert that the result is an empty list
         self.assertEqual(result, [])

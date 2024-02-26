@@ -2,22 +2,22 @@ import cv2
 import os
 from tqdm import tqdm
 
-import utils.util_find_files_in_dir
-import utils.util_select_corners
-import utils.util_perspective_transform
+import utils.find_files_in_dir
+import utils.select_corners
+import utils.perspective_transform
 
 
 def crop4dir(input_dir_path, output_dir_path=None, to_show=False):
     ok_formats = [".png", ".jpg"]
-    file_paths = utils.util_find_files_in_dir.find_files_in_dir(
+    file_paths = utils.find_files_in_dir.find_files_in_dir(
         input_dir_path, ok_formats)
 
-    corners = utils.util_select_corners.select_corner(
+    corners = utils.select_corners.select_corner(
         cv2.imread(file_paths[0]))
     for file_path in tqdm(file_paths):
         file_name = os.path.basename(file_path)
         img = cv2.imread(file_path)
-        img = utils.util_perspective_transform.perspective_transform(
+        img = utils.perspective_transform.perspective_transform(
             img, corners)
 
         if to_show:

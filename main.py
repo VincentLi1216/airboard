@@ -4,10 +4,10 @@ import os
 from tqdm import tqdm
 import json
 
-from utils.util_capture_frame import capture_frames
-from utils.util_crop4dir import crop4dir
-from utils.util_find_critical_indices import find_critical_indices
-from utils.util_combine_img import combine
+from utils.capture_frame import capture_frames
+from utils.crop4dir import crop4dir
+from utils.find_critical_indices import find_critical_indices
+from utils.combine_img import combine
 
 
 def print_step(step_name):
