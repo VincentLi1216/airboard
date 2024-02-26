@@ -8,8 +8,8 @@ from utils import find_files_in_dir
 
 class TestCaptureFrames(unittest.TestCase):
     @mock.patch('os.path.exists')
-    @mock.patch('utils.util_capture_frame.VideoFileClip')
-    @mock.patch('utils.util_capture_frame.Image')
+    @mock.patch('utils.capture_frame.VideoFileClip')
+    @mock.patch('utils.capture_frame.Image')
     @mock.patch('os.path.join')
     def test_capture_frames(self, mock_join, mock_image, mock_clip, mock_exists):
         # Mocking the os.path.exists to always return True

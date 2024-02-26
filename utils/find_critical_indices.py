@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
-import os
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-import utils.compare_img
-import utils.color_map
+import sys
+
+sys.path.append(".")
 from utils.find_files_in_dir import find_files_in_dir
 from utils.color_mask import color_mask
 from utils.written_mask import create_written_mask

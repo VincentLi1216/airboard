@@ -1,5 +1,9 @@
 import cv2
 import numpy as np
+
+import sys
+
+sys.path.append('.')
 from utils.compare_img import compare_images
 
 

@@ -1,8 +1,11 @@
-import cv2
 import numpy as np
+
+import cv2
+import sys
 import os
 
-from .color_mask import color_mask
+sys.path.append('.')
+from utils.color_mask import color_mask
 
 
 def combine(path, index, extension=".png", to_show=False):

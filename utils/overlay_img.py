@@ -1,8 +1,10 @@
 import cv2
-import copy
 import numpy as np
 from tqdm import tqdm
 
+import sys
+
+sys.path.append(".") 
 from utils.color_mask import color_mask
 from utils.find_files_in_dir import find_files_in_dir
 

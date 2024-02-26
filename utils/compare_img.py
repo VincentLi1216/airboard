@@ -1,7 +1,10 @@
 import cv2
 import numpy as np
 
-import utils.color_map
+import sys
+
+sys.path.append('.')
+from utils import color_map
 
 
 def compare_images(img1, img2):
@@ -32,7 +35,7 @@ if __name__ == "__main__":
                              cv2.NORM_MINMAX, cv2.CV_8UC1)
 
     print(diff_img.shape)
-    color_map_img = util_color_map.color_map(diff_img)
+    color_map_img = color_map.color_map(diff_img)
 
     cv2.imshow('img1', img1)
     cv2.imshow('img2', img2)

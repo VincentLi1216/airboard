@@ -1,6 +1,10 @@
 import cv2
 import numpy as np
-import utils.select_corners
+
+import sys
+
+sys.path.append('.')
+from utils import select_corners
 
 
 def distance_between_points(p1, p2):
@@ -39,7 +43,7 @@ if __name__ == "__main__":
     # Usage example
     file_path = "./example_dir/example_frame_30.png"
     img = cv2.imread(file_path)
-    corners = util_select_corners.select_corner(img)
+    corners = select_corners.select_corner(img)
     print(corners)
     transformed_image = perspective_transform(img, corners)
     cv2.imshow('Transformed Image', transformed_image)
