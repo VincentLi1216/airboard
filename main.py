@@ -63,7 +63,12 @@ def main(video_path, skip_steps=[]):
     # crop_img
     print_step("Cropping Images")
     if "crop_img" not in skip_steps:
-        crop4dir(capture_path, cropped_path)
+        try: 
+            with open("./default.json", "r") as f:
+                corners = json.load(f)["corners"]
+            crop4dir(capture_path, cropped_path, corners=corners)
+        except:
+            crop4dir(capture_path, cropped_path)
     else:
         print("Skipped")
 
@@ -103,4 +108,5 @@ def main(video_path, skip_steps=[]):
 
 
 if __name__ == "__main__":
+    # Warning: you should not skip any steps in the first run
     main("./mp4_videos/example_EM.mp4", skip_steps=["capture_frames", ""])

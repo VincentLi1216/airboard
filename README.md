@@ -122,8 +122,9 @@ Recognizing the need for flexibility in development, the Skippable Process featu
 ```python
 from main import main
 
-main("<Path to Your Video>", skip_steps=[])
+# Warning: YOU SHOULD NOT SKIP ANY STEP in the first run
 # note: you can fill in ["init_workplace", "capture_frames", "crop_img", "find_critical_indices", "combine_img"] in skip_steps
+main("<Path to Your Video>", skip_steps=[])
 ```
 
 ---

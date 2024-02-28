@@ -41,9 +41,10 @@ def perspective_transform(img, points):
 
 if __name__ == "__main__":
     # Usage example
-    file_path = "./example_dir/example_frame_30.png"
+    file_path = "./example_dir/captured_img/0.png"
     img = cv2.imread(file_path)
     corners = select_corners.select_corner(img)
+    print(type(corners))
     print(corners)
     transformed_image = perspective_transform(img, corners)
     cv2.imshow('Transformed Image', transformed_image)

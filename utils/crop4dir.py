@@ -10,13 +10,14 @@ from utils import select_corners
 from utils import find_files_in_dir
 
 
-def crop4dir(input_dir_path, output_dir_path=None, to_show=False):
+def crop4dir(input_dir_path, output_dir_path=None, to_show=False, corners=None):
     ok_formats = [".png", ".jpg"]
     file_paths = find_files_in_dir.find_files_in_dir(
         input_dir_path, ok_formats)
 
-    corners = select_corners.select_corner(
-        cv2.imread(file_paths[0]))
+    if corners == None:
+        corners = select_corners.select_corner(
+            cv2.imread(file_paths[0]))
     for file_path in tqdm(file_paths):
         file_name = os.path.basename(file_path)
         img = cv2.imread(file_path)
@@ -33,4 +34,5 @@ def crop4dir(input_dir_path, output_dir_path=None, to_show=False):
 
 
 if __name__ == "__main__":
-    crop4dir("./example_dir/example", "./example_dir/cropped", False)
+    corners = [(1826, 180), (152, 227), (187, 639), (1819, 626)]
+    crop4dir("./example_dir/example", "./example_dir/cropped", False, corners=corners)
