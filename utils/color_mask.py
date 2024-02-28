@@ -1,3 +1,4 @@
+from utils import find_files_in_dir
 import copy
 import sys
 
@@ -6,7 +7,6 @@ import numpy as np
 from tqdm import tqdm
 
 sys.path.append(".")
-from utils import find_files_in_dir
 
 
 def color_mask(input_img, lower_bound=np.array([47, 14, 82]), upper_bound=np.array([120, 130, 190]), blur_radius=41, show_result=False, erosion_ksize=21, vertical_mask=False):
