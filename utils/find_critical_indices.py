@@ -79,6 +79,8 @@ def find_critical_indices(dir_path, save_path=None, to_show=False, show_plot=Fal
 
     if show_plot:
         print(min_indices, pixel_list[min_indices])
+        plt.xlabel("Frame")
+        plt.ylabel("Valid Pixel Percentage")
         plt.plot(pixel_list, "r-", label="original")
         plt.plot(smooth, "b", label="conv_array")
         plt.scatter(np.array(min_indices),
